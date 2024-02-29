@@ -1,2 +1,4 @@
 # Ignora los archivos relacionados 
 .env
+#Ignora Carpetas
+_pycache_
