@@ -33,6 +33,22 @@ class Conexion:
             if self.__database is None:
                 raise ValueError("No se puede guardar datos. Conexión no establecida.")
             else:
-                self.__database.child(f"usuarios/{data['nombre']}").set(data)
+                self.__database.child(f"usuarios/{data['rut']}").set(data)
+
         except ValueError as e:
             print(f"Error: {e}")
+    def obtener_datos(self,data):
+        try:
+            if self.__database is None:
+                raise ValueError("No se puede obtener datos. Conexión no establecida.")
+            
+            referencia = self.__database.child(f"usuarios/")
+            datos = referencia.get()
+
+            if datos is None:
+                return None  
+            return datos
+        except (ValueError, TypeError) as e:
+            print(f"Error al obtener datos: {e}")
+            return None  
+
